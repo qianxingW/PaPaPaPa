@@ -24,4 +24,4 @@
   。                      
   。                        
   。                       
- ![Alt text]()
+ ![Alt text](./pic/1.bmp)
