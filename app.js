@@ -2,7 +2,7 @@
  * @Author: Marte
  * @Date:   2017-01-05 19:13:06
  * @Last Modified by:   Marte
- * @Last Modified time: 2017-01-06 15:31:57
+ * @Last Modified time: 2017-01-06 16:50:11
  */
 
 var http = require('http'); // http 网路
@@ -28,16 +28,14 @@ function getHtml(href, serach) {
     var pageData = "";
     var req = http.get(href + serach, function(res) {
         res.setEncoding('utf8');
-        // res.on('data', function(chunk) {
-        //     pageData += chunk;
-        // });
+        res.on('data', function(chunk) {
+            pageData += chunk;
+        });
 
         res.on('end', function() {
-            console.log(typeof pageData)
             $ = cheerio.load(pageData);
             var html = $(".joke-list-item .joke-main-content a img");
 
-            console.log(html.length);
             for (var i = 0; i < html.length; i++) {
                 var src = html[i].attribs.src;
                 // 筛选部分广告，不是真的段子
